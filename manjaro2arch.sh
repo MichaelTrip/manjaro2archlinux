@@ -34,5 +34,5 @@ EOF
 pacman -Syyuu --noconfirm filesystem pacman bash linux breeze-grub breeze-gtk lsb-release systemd # Force reinstall
 pacman -Rdd   --noconfirm $(pacman -Qq | grep -E 'manjaro|breath')
 cp /usr/share/grub/themes/breeze /boot/grub/themes/
-sed 's/^GRUB_THEME.*$/GRUB_THEME="/boot/grub/themes/breeze/theme.txt"/g' /etc/default/grub -i && grub-mkconfig -o /boot/grub/grub.cfg
+sed -i 's/^GRUB_THEME.*$/GRUB_THEME="/boot/grub/themes/breeze/theme.txt"/g' /etc/default/grub && grub-mkconfig -o /boot/grub/grub.cfg
 exit 0
