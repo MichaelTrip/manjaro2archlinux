@@ -27,7 +27,7 @@ Include = /etc/pacman.d/mirrorlist
 [multilib]
 Include = /etc/pacman.d/mirrorlist
 EOF
-[ -z "$SERVER" ] && SERVER='http://ftp.snt.utwente.nl/pub/linux/manjaro/stable/$repo/$arch'
+[ -z "$SERVER" ] && SERVER='http://ftp.snt.utwente.nl/pub/os/linux/archlinux/$repo/os/$arch'
 cat <<EOF >/etc/pacman.d/mirrorlist
 Server = $SERVER
 EOF
