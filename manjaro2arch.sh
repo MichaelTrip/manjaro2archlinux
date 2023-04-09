@@ -31,6 +31,7 @@ EOF
 cat <<EOF >/etc/pacman.d/mirrorlist
 Server = $SERVER
 EOF
+pacman -R --noconfirm bmenu pacui pacman-contrib
 pacman -Syyuu --noconfirm filesystem pacman bash linux breeze-grub breeze-gtk lsb-release systemd # Force reinstall
 pacman -Rdd   --noconfirm $(pacman -Qq | grep -E 'manjaro|breath')
 cp /usr/share/grub/themes/breeze /boot/grub/themes/
