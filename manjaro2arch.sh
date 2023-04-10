@@ -35,6 +35,7 @@ pacman -R --noconfirm bmenu pacui
 pacman -Sc --noconfirm
 pacman -Syyuu --noconfirm filesystem pacman breeze-grub breeze-gtk systemd # Force reinstall
 pacman -Rdd   --noconfirm $(pacman -Qq | grep -E 'manjaro|breath')
+pacman -Rdd --noconfirm libpamac libpamac-flatpak-plugin pamac-cli pamac-gnome-integration pamac-gtk gnome-layout-switcher
 pacman -Syyuu --noconfirm lsb-release bash # Force reinstall
 pacman -S --noconfirm --overwrite "*" linux #force reinstall of kernel
 cp /usr/share/grub/themes/breeze /boot/grub/themes/
