@@ -56,7 +56,7 @@ packages=$(pacman -Qqn)
 
 # Reinstall all packages and overwrite existing configuration files
 for package in $packages; do
-    pacman -S --overwrite='*' $package
+    pacman -S --noconfirm --overwrite='*' $package
 done
 EOF
 
