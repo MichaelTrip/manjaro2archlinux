@@ -51,7 +51,6 @@ else
   exit 1
 fi
 
-#!/bin/bash
 # Get list of installed packages (excluding AUR packages)
 packages=$(pacman -Qqn)
 
