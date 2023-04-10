@@ -39,9 +39,7 @@ pacman -Rdd --noconfirm libpamac libpamac-flatpak-plugin pamac-cli pamac-gnome-i
 pacman -Syyuu --noconfirm lsb-release bash # Force reinstall
 pacman -S --noconfirm --overwrite "*" linux #force reinstall of kernel
 cp /usr/share/grub/themes/breeze /boot/grub/themes/
-sed -i 's|^GRUB_THEME.*$|GRUB_THEME="/boot/grub/themes/breeze/theme.txt"|g' /etc/default/grub && \
-  sed -i 's|^GRUB_DISTRIBUTOR.*$||g' /etc/default/grub && \ 
-  grub-mkconfig -o /boot/grub/grub.cfg
+sed -i 's|^GRUB_THEME.*$|GRUB_THEME="/boot/grub/themes/breeze/theme.txt"|g' /etc/default/grub && sed -i 's|^GRUB_DISTRIBUTOR.*$||g' /etc/default/grub && grub-mkconfig -o /boot/grub/grub.cfg
 
 cat <<EOF >~/reinstall-packages.sh
 
