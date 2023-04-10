@@ -33,10 +33,11 @@ Server = $SERVER
 EOF
 pacman -R --noconfirm bmenu pacui
 pacman -Sc --noconfirm
-pacman -Syyuu --noconfirm filesystem pacman bash linux breeze-grub breeze-gtk lsb-release systemd # Force reinstall
+pacman -Syyuu --noconfirm filesystem pacman linux breeze-grub breeze-gtk systemd # Force reinstall
 pacman -Rdd   --noconfirm $(pacman -Qq | grep -E 'manjaro|breath')
+pacman -Syyuu --noconfirm lsb-release bash # Force reinstall
 cp /usr/share/grub/themes/breeze /boot/grub/themes/
-sed -i 's/^GRUB_THEME.*$/GRUB_THEME="/boot/grub/themes/breeze/theme.txt"/g' /etc/default/grub && grub-mkconfig -o /boot/grub/grub.cfg
+sed -i 's|^GRUB_THEME.*$|GRUB_THEME="/boot/grub/themes/breeze/theme.txt"|g' /etc/default/grub && grub-mkconfig -o /boot/grub/grub.cfg
 
 cat <<EOF >~/reinstall-packages.sh
 
