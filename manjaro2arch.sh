@@ -61,6 +61,6 @@ done
 EOF
 chmod +x ~/reinstall-packages.sh
 
-echo "Reboot, after that. run the reinstall-packages.sh script with sudo located in your home directory"
+echo "Reboot please! After that. run the reinstall-packages.sh script located in the home directory of the root user (/root)"
 
 exit 0
