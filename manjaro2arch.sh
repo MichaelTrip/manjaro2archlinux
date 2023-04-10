@@ -33,9 +33,10 @@ Server = $SERVER
 EOF
 pacman -R --noconfirm bmenu pacui
 pacman -Sc --noconfirm
-pacman -Syyuu --noconfirm filesystem pacman linux breeze-grub breeze-gtk systemd # Force reinstall
+pacman -Syyuu --noconfirm filesystem pacman breeze-grub breeze-gtk systemd # Force reinstall
 pacman -Rdd   --noconfirm $(pacman -Qq | grep -E 'manjaro|breath')
 pacman -Syyuu --noconfirm lsb-release bash # Force reinstall
+pacman -S --noconfirm --overwrite "*" linux #force reinstall of kernel
 cp /usr/share/grub/themes/breeze /boot/grub/themes/
 sed -i 's|^GRUB_THEME.*$|GRUB_THEME="/boot/grub/themes/breeze/theme.txt"|g' /etc/default/grub && grub-mkconfig -o /boot/grub/grub.cfg
 
@@ -50,20 +51,14 @@ else
   exit 1
 fi
 
-# Create a list of explicitly installed packages
-pacman -Qeq > package-list.txt
+#!/bin/bash
+# Get list of installed packages (excluding AUR packages)
+packages=$(pacman -Qqn)
 
-# Create a list of all installed packages, including dependencies
-pacman -Qeq | sed 's/\(^.*\)/\1 \1/g' | xargs pacman -Qq | sort -u > all-package-list.txt
-
-# Create a list of packages that are not dependencies
-comm -13 <(pacman -Qtdq | sort) <(pacman -Qqg base base-devel linux linux-firmware | sort -u) > non-dependency-list.txt
-
-# Combine the lists of explicitly installed packages and non-dependency packages
-cat package-list.txt non-dependency-list.txt | sort -u > reinstall-list.txt
-
-# Reinstall all packages from the combined list
-spacman -S --force --noconfirm - < reinstall-list.txt
+# Reinstall all packages and overwrite existing configuration files
+for package in $packages; do
+    pacman -S --needed --overwrite='*' $package
+done
 EOF
 chmod +x ~/reinstall-packages.sh
 
