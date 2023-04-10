@@ -41,8 +41,7 @@ pacman -S --noconfirm --overwrite "*" linux #force reinstall of kernel
 cp /usr/share/grub/themes/breeze /boot/grub/themes/
 sed -i 's|^GRUB_THEME.*$|GRUB_THEME="/boot/grub/themes/breeze/theme.txt"|g' /etc/default/grub && sed -i 's|^GRUB_DISTRIBUTOR.*$||g' /etc/default/grub && grub-mkconfig -o /boot/grub/grub.cfg
 
-cat <<EOF >~/reinstall-packages.sh
-
+cat <<"EOF" >~/reinstall-packages.sh
 #!/bin/bash
 
 if [ `id -u` -eq 0 ];then
@@ -57,9 +56,10 @@ packages=$(pacman -Qqn)
 
 # Reinstall all packages and overwrite existing configuration files
 for package in $packages; do
-    pacman -S --needed --overwrite='*' $package
+    pacman -S --overwrite='*' $package
 done
 EOF
+
 chmod +x ~/reinstall-packages.sh
 
 echo "Reboot please! After that. run the reinstall-packages.sh script located in the home directory of the root user (/root)"
