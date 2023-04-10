@@ -62,10 +62,10 @@ comm -13 <(pacman -Qtdq | sort) <(pacman -Qqg base base-devel linux linux-firmwa
 cat package-list.txt non-dependency-list.txt | sort -u > reinstall-list.txt
 
 # Reinstall all packages from the combined list
-sudo pacman -S --force --noconfirm - < reinstall-list.txt
+spacman -S --force --noconfirm - < reinstall-list.txt
 EOF
 chmod +x ~/reinstall-packages.sh
 
-echo "Reboot, after that. run the reinstall-packages.sh script located in your home directory"
+echo "Reboot, after that. run the reinstall-packages.sh script with sudo located in your home directory"
 
 exit 0
