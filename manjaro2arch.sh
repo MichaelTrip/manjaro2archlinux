@@ -5,6 +5,26 @@ else
   echo "Please run with root permission"
   exit 1
 fi
+
+
+echo "##################################################################"
+echo "# Welcome to the Manjaro to Arch conversion script. This script  #"
+echo "# will convert any Manjaro to a Archlinux installation.           #"
+echo "# Be sure to read the README.md and create a backup!              #"
+echo "##################################################################"
+
+echo " \033[31;5mDo you Whish to proceed? This script comes with absolutely NO WARRANTY!!!\033[0m"
+
+read -p "Do you want to proceed? (yes/no) " yn
+
+case $yn in
+	yes ) echo ok, we will proceed;;
+	no ) echo exiting...;
+		exit;;
+	* ) echo invalid response;
+		exit 1;;
+esac
+
 mv /etc/pacman.conf /etc/pacman.conf.bak
 mv /etc/manjaro-release /etc/manjaro-release.bak
 mv /etc/pacman-mirrors.conf /etc/pacman-mirrors.conf.bak
@@ -38,7 +58,7 @@ pacman -Rdd --noconfirm libpamac libpamac-flatpak-plugin pamac-cli pamac-gnome-i
 pacman -Syyuu --noconfirm lsb-release bash # Force reinstall
 pacman -S --noconfirm --overwrite "*" linux #force reinstall of kernel
 pacman -S --noconfirm breeze-grub breeze-gtk  # reinstrall themes
-cp /usr/share/grub/themes/breeze /boot/grub/themes/
+cp -R /usr/share/grub/themes/breeze /boot/grub/themes/
 sed -i 's|^GRUB_THEME.*$|GRUB_THEME="/boot/grub/themes/breeze/theme.txt"|g' /etc/default/grub && sed -i 's|^GRUB_DISTRIBUTOR.*$||g' /etc/default/grub && grub-mkconfig -o /boot/grub/grub.cfg
 
 cat <<"EOF" >~/reinstall-packages.sh
