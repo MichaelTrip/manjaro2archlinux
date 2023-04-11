@@ -13,7 +13,7 @@ echo "# will convert any Manjaro to a Archlinux installation.           #"
 echo "# Be sure to read the README.md and create a backup!              #"
 echo "##################################################################"
 
-echo " \033[31;5mDo you Whish to proceed? This script comes with absolutely NO WARRANTY!!!\033[0m"
+echo -e "\033[31;5mDo you Whish to proceed? This script comes with absolutely NO WARRANTY\033[0m"
 
 read -p "Do you want to proceed? (yes/no) " yn
 
